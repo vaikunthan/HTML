@@ -1,0 +1,113 @@
+<html>
+<head>
+<title> loginApplication </title>
+       <script>
+	   function nullcheck(){
+	   var uname=document.loginForm.username.value;
+	    var p=document.loginForm.password.value;
+		 var e=document.loginForm.email.value;
+		  var ph=document.loginForm.ph.value;
+	   
+	   if(uname==""||uname==null){
+	   alert("username cant be null");
+	    return false;
+	   
+	   }
+	   else if(uname.length<3){
+	   alert("emter valid name");
+	   return false;
+	   }
+	   else if(ph.length!=10){
+	   alert("plese enter valid phonenumber");
+	   return false;
+	   }
+	    if(p==""||p==null){
+	   alert("Password cant be null");
+	   return false;
+	   
+	   }
+	    if(e==""||e==null){
+	   alert("email cant be null");
+	   return false;
+	   
+	   }
+	    if(ph==""||ph==null){
+	   alert("phone number cant be null");
+	   return false;
+	   
+	   }
+	  
+	   }
+	   function validate(obj,event){
+	   var inp=obj.name;
+	   if(inp=="username"){
+	   
+	   var k=event.keyCode;
+	   var keychar=String.fromCharCode(k);
+	   var regex=/^[A-Za-z]$/
+	   if(!keychar.match(regex)){ 
+	   alert("number and special char not allowed");
+	   return false;
+	   }
+	   }
+	   if(inp=="ph"){
+	   var k=event.keyCode;
+	   var keychar=String.fromCharCode(k);
+	   var regex=/^[0-9]$/
+	   if(!keychar.match(regex)){ 
+	   alert("char and special char not allowed");
+	   return false;
+	   }
+	   }
+	}
+	   function CheckPassword(){
+	   var password=document.loginForm.password.value;
+	   var passwd=/^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{7,15}$/
+	   if(!password.match(passwd))
+	   {
+	   alert("password must contain number and special char");
+	   return false;
+	   }
+	      
+	   }
+	   function CheckEmail(){
+	   var email=document.loginForm.email.value;
+	   var mail=/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+	   if(!email.match(mail))
+	   {
+	   alert("email must contain @ and .");
+	   return false;
+	   }
+	   }
+	   function validateSubmit(){
+	   var retvalue;
+	   retvalue=nullcheck();
+	   if(retvalue==false){
+	   return retvalue;
+	   }
+	   
+	   retvalue=CheckPassword();
+	   if(retvalue==false){
+	   return retvalue;
+	   }
+	   
+	   retvalue=CheckEmail();
+	   if(retvalue==false){
+	   return retvalue;
+	   }
+	   }
+	   
+	  </script>
+</head>
+    <body> 
+     <form name="loginForm" action="welcome.html">
+	 Name <input type="text" name="username" /><br/>
+     Email <input type="text" name="email"/> <br/>
+     Phone no <input type="text" name="ph" onKeyPress="return validate(this,event)"/> <br/>
+	 Password<input type="text" name="password" /> <br/>
+	  
+    <input type="submit" value="login" onClick="return validateSubmit()">
+	 </form>
+	</body>
+	
+</html>	
